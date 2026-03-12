@@ -3,6 +3,7 @@ package com.fag.lucasmartins.arquitetura_software.repository.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "produto")
 public class ProdutoEntity {
 
     @Id

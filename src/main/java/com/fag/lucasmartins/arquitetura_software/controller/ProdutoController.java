@@ -35,11 +35,7 @@ public class ProdutoController {
                 .status(201)
                 .body(produtoCriadoDTO);
 
-//        try {
-////            String nome = (String) payload.get("nome");
-////            Integer estoque = (Integer) payload.get("estoque");
-////            double preco = (double) payload.get("preco");
-//
+
 //            if (nome != null && nome.toLowerCase().contains("premium")) {
 //                if (preco < 100.0) {
 //                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: Produtos Premium não podem custar menos de R$ 100,00.");
@@ -49,16 +45,6 @@ public class ProdutoController {
 //            if (estoque != null && estoque >= 50) {
 //                precoFinal = preco - (preco * 0.10); // 10%
 //            }
-//
-//            String sqlInsertPedido = "INSERT INTO produto (nome, preco, preco_final, estoque) VALUES (?, ?, ?, ?)";
-//            jdbcTemplate.update(sqlInsertPedido, nome, preco, precoFinal, estoque);
-//
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("mensagem", "Produto cadastrado com sucesso!");
-//            response.put("nome", nome);
-//            response.put("estoque", estoque);
-//            response.put("preco", preco);
-//            response.put("preco_final", precoFinal);
 //
 //            return ResponseEntity.status(HttpStatus.CREATED).body(response);
 //        } catch (Exception e) {
