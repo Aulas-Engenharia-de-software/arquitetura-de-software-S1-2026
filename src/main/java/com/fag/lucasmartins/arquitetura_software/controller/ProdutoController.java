@@ -27,18 +27,10 @@ public class ProdutoController {
 
     @PostMapping
     public ResponseEntity<?> cadastrarProduto(@Valid @RequestBody ProdutoRequestDTO dto) {
-        try {
-            ProdutoBO produtoBO = ProdutoDTOMapper.toBo(dto);
-
-            ProdutoBO criado = produtoService.criarProduto(produtoBO);
-
-            ProdutoResponseDTO response = ProdutoDTOMapper.toDto(criado);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao processar requisição: " + e.getMessage());
-        }
+        // Delega comportamento padrão para o helper genérico.
+        return ControllerHelper.handleCreate(dto,
+                ProdutoDTOMapper::toBo,
+                produtoService::criarProduto,
+                ProdutoDTOMapper::toDto);
     }
 }
