@@ -1,4 +1,4 @@
-package com.fag.lucasmartins.arquitetura_software;
+package com.fag.felipeheringer.arquitetura_software;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
