@@ -26,7 +26,7 @@ public class ProdutoController {
 
             return ResponseEntity.status(HttpStatus.CREATED).body(produto);
 
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 

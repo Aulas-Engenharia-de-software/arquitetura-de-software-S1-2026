@@ -14,15 +14,13 @@ public class Produto {
         this.precoFinal = preco;
     }
 
-    public void validarProdutoPremium() {
+public void validarProdutoPremium() {
 
-        if (nome != null && nome.toLowerCase().contains("premium")) {
+    if (nome != null && nome.toLowerCase().contains("premium") && preco < 100) {
+        throw new RuntimeException("Produto premium deve custar pelo menos 100");
+    }
 
-            if (preco < 100) {
-                throw new RuntimeException("Produto premium deve custar pelo menos 100");
-            }
-
-        }
+}
 
     }
 
