@@ -35,7 +35,6 @@ public class ProdutoBO {
         }
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
