@@ -1,6 +1,14 @@
-package com.fag.lucasmartins.arquitetura_software.model.bo;
+package com.fag.lucasmartins.arquitetura_software.model.repository.entity;
 
-public class ProdutoBO {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tb_produto")
+public class ProdutoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer Id;
 
     private String nome;
 
@@ -10,18 +18,12 @@ public class ProdutoBO {
 
     private double precoFinal;
 
-    public void validarPrecoProdutoPremium() {
-        if (this.nome != null && this.nome.toLowerCase().contains("premium")) {
-            if (this.preco < 100.0) {
-                throw new RuntimeException("Erro: Produtos Premium não podem custar menos de R$ 100,00.");
-            }
-        }
+    public Integer getId() {
+        return Id;
     }
 
-    public void calcularPrecoFinalPorEstoqueBaixo(){
-        if (estoque != null && estoque >= 50) {
-            this.precoFinal = preco - (preco * 0.10);
-        }
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public String getNome() {
