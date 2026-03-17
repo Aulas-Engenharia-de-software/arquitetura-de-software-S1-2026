@@ -1,7 +1,7 @@
 package com.fag.lucasmartins.arquitetura_software.controller;
 
 import com.fag.lucasmartins.arquitetura_software.model.Produto;
-import com.fag.lucasmartins.arquitetura_software.service.ProdutoService;
+import com.fag.lucasmartins.arquitetura_software.service.IProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService produtoService;
+    private IProdutoService produtoService;
 
     // Recebe e decodifica a requisição via Payload
     @PostMapping

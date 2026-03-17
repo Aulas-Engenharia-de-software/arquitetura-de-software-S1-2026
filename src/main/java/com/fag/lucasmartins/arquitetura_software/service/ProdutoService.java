@@ -1,38 +1,29 @@
 package com.fag.lucasmartins.arquitetura_software.service;
 
+import com.fag.lucasmartins.arquitetura_software.bo.ProdutoBO;
 import com.fag.lucasmartins.arquitetura_software.model.Produto;
-import com.fag.lucasmartins.arquitetura_software.repository.ProdutoRepository;
+import com.fag.lucasmartins.arquitetura_software.repository.IProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-// Camada de Negócio (Service): Concentra toda a inteligência e regras de negócio da aplicação.
-// Não conhece nada sobre HTTP, JSONs ou SQL.
+// Camada de Negócio (Service): Concentra o fluxo da aplicação e orquestra operações.
 @Service
-public class ProdutoService {
+public class ProdutoService implements IProdutoService {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private IProdutoRepository produtoRepository;
 
-    // Executa as validações de negócio antes de delegar a persistência ao Repository.
+    @Autowired
+    private ProdutoBO produtoBO;
+
+    @Override
     public Produto cadastrarProduto(Produto produto) throws IllegalArgumentException {
-        
-        // Validação de negócio: Produtos Premium
-        if (produto.getNome() != null && produto.getNome().toLowerCase().contains("premium")) {
-            if (produto.getPreco() < 100.0) {
-                throw new IllegalArgumentException("Erro: Produtos Premium não podem custar menos de R$ 100,00.");
-            }
-        }
+        // 1. Aplica as regras de negócio via Business Object (BO)
+        Produto produtoProcessado = produtoBO.processarRegrasDeNegocio(produto);
 
-        // Regra de precificação: Desconto baseado na quantidade em estoque
-        double precoFinal = produto.getPreco();
-        if (produto.getEstoque() != null && produto.getEstoque() >= 50) {
-            precoFinal = produto.getPreco() - (produto.getPreco() * 0.10);
-        }
-        produto.setPrecoFinal(precoFinal);
+        // 2. Após aplicar e validar todas as regras, acionamos a camada que salva os dados
+        produtoRepository.salvar(produtoProcessado);
 
-        // Após aplicar e validar todas as regras, acionamos a camada que salva os dados
-        produtoRepository.salvar(produto);
-
-        return produto;
+        return produtoProcessado;
     }
 }

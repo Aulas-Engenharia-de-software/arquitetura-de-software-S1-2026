@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 // Camada de Persistência (Repository): Responsável exclusiva pelo acesso e manipulação de dados no banco.
 // Isolamento total: Qualquer mudança de SQL ou banco de dados afeta apenas esta classe.
 @Repository
-public class ProdutoRepository {
+public class ProdutoRepository implements IProdutoRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
