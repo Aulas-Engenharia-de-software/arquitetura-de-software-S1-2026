@@ -8,8 +8,12 @@ import com.fag.lucasmartins.arquitetura_software.model.Produto;
 @Repository
 public class ProdutoRepository implements IProdutoRepository {
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public ProdutoRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public void salvar(Produto produto, double precoFinal) {

@@ -13,10 +13,8 @@ public class Produto {
     }
 
     private void validarProdutoPremium() {
-        if (this.nome != null && this.nome.toLowerCase().contains("premium")) {
-            if (this.preco < 100.0) {
-                throw new IllegalArgumentException("Erro: Produtos Premium não podem custar menos de R$ 100,00.");
-            }
+        if (this.nome != null && this.nome.toLowerCase().contains("premium") && this.preco < 100.0) {
+            throw new IllegalArgumentException("Erro: Produtos Premium não podem custar menos de R$ 100,00.");
         }
     }
 
