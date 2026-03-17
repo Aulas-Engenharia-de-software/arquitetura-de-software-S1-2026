@@ -6,10 +6,7 @@ import com.fag.lucasmartins.arquitetura_software.model.Produto;
 import com.fag.lucasmartins.arquitetura_software.service.IProdutoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/produtos")
@@ -19,6 +16,15 @@ public class ProdutoController {
 
     public ProdutoController(IProdutoService produtoService) {
         this.produtoService = produtoService;
+    }
+
+    @GetMapping
+    public ResponseEntity<ProdutoResponseDTO> obterTodosProdutos() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(new ProdutoResponseDTO("Sucesso ao buscar produtos.", null, 0, 0.0, 0.0));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ProdutoResponseDTO("Erro ao buscar produtos: " + e.getMessage(), null, 0, 0.0, 0.0));
+        }
     }
 
     @PostMapping
@@ -49,6 +55,36 @@ public class ProdutoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ProdutoResponseDTO("Erro: " + e.getMessage(), null, 0, 0.0, 0.0));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ProdutoResponseDTO("Erro ao processar requisição: " + e.getMessage(), null, 0, 0.0, 0.0));
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProdutoResponseDTO> atualizarProduto(@PathVariable Long id, @RequestBody ProdutoRequestDTO request) {
+        try {
+            if (request.getNome() == null || request.getNome().isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ProdutoResponseDTO("Erro: Nome obrigatório.", null, 0, 0.0, 0.0));
+            }
+            if (request.getPreco() <= 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ProdutoResponseDTO("Erro: Preço deve ser positivo.", null, 0, 0.0, 0.0));
+            }
+            if (request.getEstoque() < 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ProdutoResponseDTO("Erro: Estoque não pode ser negativo.", null, 0, 0.0, 0.0));
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(new ProdutoResponseDTO("Produto atualizado com sucesso!", request.getNome(), request.getEstoque(), request.getPreco(), 0.0));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ProdutoResponseDTO("Erro: " + e.getMessage(), null, 0, 0.0, 0.0));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ProdutoResponseDTO("Erro ao atualizar produto: " + e.getMessage(), null, 0, 0.0, 0.0));
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ProdutoResponseDTO> deletarProduto(@PathVariable Long id) {
+        try {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ProdutoResponseDTO("Erro ao deletar produto: " + e.getMessage(), null, 0, 0.0, 0.0));
         }
     }
 }
