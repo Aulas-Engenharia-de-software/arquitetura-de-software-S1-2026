@@ -1,5 +1,7 @@
 package com.fag.lucasmartins.arquitetura_software.model.bo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,7 +22,8 @@ public class ProdutoBO {
     private double preco;
 
     @Column(name = "preco_final")
-    private double preco_final;
+    @JsonProperty("preco_final")
+    private double precoFinal;
 
     public ProdutoBO() {
     }
@@ -29,19 +32,15 @@ public class ProdutoBO {
         this.nome = nome;
         this.estoque = estoque;
         this.preco = preco;
-        preco_final = precoFinal;
+        precoFinal = precoFinal;
     }
 
     public void calculateFinalPrice() {
-//        double precoFinal = produtoDTO.getPreco();
-//        if (produtoDTO.getEstoque() != null && produtoDTO.getEstoque() >= 50) {
-//            precoFinal = produtoDTO.getPreco() - (produtoDTO.getPreco() * 0.10); // 10%
-//    }
         if (estoque >= 50) {
-            preco_final = preco * 0.90;
+            precoFinal = preco * 0.90;
             return;
         }
-        preco_final = preco;
+        precoFinal = preco;
     }
 
     public Long getId() {
@@ -77,10 +76,10 @@ public class ProdutoBO {
     }
 
     public double getPreco_final() {
-        return preco_final;
+        return precoFinal;
     }
 
     public void setPreco_final(double preco_final) {
-        this.preco_final = preco_final;
+        this.precoFinal = preco_final;
     }
 }

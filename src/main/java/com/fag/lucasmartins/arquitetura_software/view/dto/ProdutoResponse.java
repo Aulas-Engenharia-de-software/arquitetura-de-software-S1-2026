@@ -22,39 +22,19 @@ public class ProdutoResponse {
         return mensagem;
     }
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Integer getEstoque() {
         return estoque;
     }
 
-    public void setEstoque(Integer estoque) {
-        this.estoque = estoque;
-    }
-
     public double getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
     public double getPreco_final() {
         return preco_final;
-    }
-
-    public void setPreco_final(double preco_final) {
-        this.preco_final = preco_final;
     }
 }
