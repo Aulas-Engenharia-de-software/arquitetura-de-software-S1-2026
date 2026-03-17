@@ -11,7 +11,6 @@ public class ProdutoResponseDTO {
         this.precoFinal = precoFinal;
     }
 
-    // Getters
     public String getMensagem() {
         return mensagem;
     }

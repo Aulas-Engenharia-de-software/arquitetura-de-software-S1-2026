@@ -5,7 +5,6 @@ public class ProdutoRequestDTO {
     private Integer estoque;
     private double preco;
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }
