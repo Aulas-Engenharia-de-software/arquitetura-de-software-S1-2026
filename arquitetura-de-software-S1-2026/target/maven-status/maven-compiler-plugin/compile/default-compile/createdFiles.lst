@@ -1,0 +1,9 @@
+com\fag\lucasmartins\arquitetura_software\domain\Produto.class
+com\fag\lucasmartins\arquitetura_software\mapper\ProdutoMapper.class
+com\fag\lucasmartins\arquitetura_software\repository\ProdutoRepository.class
+com\fag\lucasmartins\arquitetura_software\service\impl\ProdutoServiceImpl.class
+com\fag\lucasmartins\arquitetura_software\dto\ProdutoRequestDTO.class
+com\fag\lucasmartins\arquitetura_software\service\ProdutoService.class
+com\fag\lucasmartins\arquitetura_software\controller\ProdutoController.class
+com\fag\lucasmartins\arquitetura_software\dto\ProdutoResponseDTO.class
+com\fag\lucasmartins\arquitetura_software\ArquiteturaSoftwareApplication.class
