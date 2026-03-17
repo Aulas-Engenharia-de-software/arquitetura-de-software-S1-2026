@@ -1,40 +1,17 @@
 package com.fag.lucasmartins.arquitetura_software.view.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProdutoRequest {
+
     private String nome;
     private Integer estoque;
     private double preco;
-
-    public ProdutoRequest() {
-    }
-
-    public ProdutoRequest(String nome, Integer estoque, double preco) {
-        this.nome = nome;
-        this.estoque = estoque;
-        this.preco = preco;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(Integer estoque) {
-        this.estoque = estoque;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
 }

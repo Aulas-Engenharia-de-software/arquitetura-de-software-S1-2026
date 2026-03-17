@@ -10,10 +10,21 @@ public class ProdutoMapper {
     }
 
     public static ProdutoBO toProdutoBO(ProdutoRequest produtoRequest) {
-        return new ProdutoBO(produtoRequest.getNome(), produtoRequest.getEstoque(), produtoRequest.getPreco(), produtoRequest.getPreco());
+        return ProdutoBO.builder()
+                .nome(produtoRequest.getNome())
+                .estoque(produtoRequest.getEstoque())
+                .preco(produtoRequest.getPreco())
+                .precoFinal(produtoRequest.getPreco())
+                .build();
     }
 
     public static ProdutoResponse toProdutoResponse(String mensagem, ProdutoBO produtoBO) {
-        return new ProdutoResponse(mensagem, produtoBO.getNome(), produtoBO.getEstoque(), produtoBO.getPreco(), produtoBO.getPrecoFinal());
+        return ProdutoResponse.builder()
+                .mensagem(mensagem)
+                .nome(produtoBO.getNome())
+                .estoque(produtoBO.getEstoque())
+                .preco(produtoBO.getPreco())
+                .precoFinal(produtoBO.getPrecoFinal())
+                .build();
     }
 }

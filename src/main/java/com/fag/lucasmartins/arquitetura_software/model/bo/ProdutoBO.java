@@ -1,11 +1,17 @@
 package com.fag.lucasmartins.arquitetura_software.model.bo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "produto")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProdutoBO {
 
     @Id
@@ -25,61 +31,11 @@ public class ProdutoBO {
     @JsonProperty("preco_final")
     private double precoFinal;
 
-    public ProdutoBO() {
-    }
-
-    public ProdutoBO(String nome, Integer estoque, double preco, double precoFinal) {
-        this.nome = nome;
-        this.estoque = estoque;
-        this.preco = preco;
-        this.precoFinal = precoFinal;
-    }
-
     public void calculateFinalPrice() {
         if (estoque >= 50) {
             precoFinal = preco * 0.90;
             return;
         }
         precoFinal = preco;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(Integer estoque) {
-        this.estoque = estoque;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public double getPrecoFinal() {
-        return precoFinal;
-    }
-
-    public void setPrecoFinal(double precoFinal) {
-        this.precoFinal = precoFinal;
     }
 }

@@ -5,6 +5,7 @@ import com.fag.lucasmartins.arquitetura_software.exception.BadRequestException;
 import com.fag.lucasmartins.arquitetura_software.model.service.impl.ProdutoService;
 import com.fag.lucasmartins.arquitetura_software.view.dto.ProdutoRequest;
 import com.fag.lucasmartins.arquitetura_software.view.dto.ProdutoResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,13 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/produtos")
+@RequiredArgsConstructor
 public class ProdutoController {
 
     private final ProdutoService produtoService;
-
-    public ProdutoController(ProdutoService produtoService) {
-        this.produtoService = produtoService;
-    }
 
     @PostMapping
     public ResponseEntity<ProdutoResponse> cadastrarProduto(@RequestBody ProdutoRequest produtoRequest) {
