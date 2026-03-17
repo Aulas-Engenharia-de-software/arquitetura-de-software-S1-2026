@@ -32,7 +32,7 @@ public class ProdutoBO {
         this.nome = nome;
         this.estoque = estoque;
         this.preco = preco;
-        precoFinal = precoFinal;
+        this.precoFinal = precoFinal;
     }
 
     public void calculateFinalPrice() {
@@ -75,11 +75,11 @@ public class ProdutoBO {
         this.preco = preco;
     }
 
-    public double getPreco_final() {
+    public double getPrecoFinal() {
         return precoFinal;
     }
 
-    public void setPreco_final(double preco_final) {
-        this.precoFinal = preco_final;
+    public void setPrecoFinal(double precoFinal) {
+        this.precoFinal = precoFinal;
     }
 }
