@@ -1,36 +1,33 @@
 package com.fag.lucasmartins.mvc.model.bo;
 
 public class ProdutoBO {
-    private Long id;
     private String nome;
-    private Double preco;
-    private Integer quantidade;
+    private Double precoOriginal;
+    private Integer estoque;
+    private Double precoFinal;
 
-    public ProdutoBO() {
-    }
-
-    public ProdutoBO(Long id, String nome, Double preco, Integer quantidade) {
-        this.id = id;
+    public ProdutoBO(String nome, Double precoOriginal, Integer estoque) {
         this.nome = nome;
-        this.preco = preco;
-        this.quantidade = quantidade;
+        this.precoOriginal = precoOriginal;
+        this.estoque = estoque;
+        this.precoFinal = precoOriginal;
     }
 
-    public void aplicarDescontoAtacado() {
-        if (this.quantidade != null && this.quantidade > 100) {
-            this.preco = this.preco * 0.90;
+    public void aplicarRegrasNegocio() throws Exception {
+        if (nome != null && nome.toLowerCase().contains("premium") && precoOriginal < 100.0) {
+            throw new Exception("Erro: Produtos Premium não podem custar menos de R$ 100,00.");
+        }
+
+        
+        if (estoque != null && estoque >= 50) {
+            this.precoFinal = precoOriginal * 0.90;
+        } else {
+            this.precoFinal = precoOriginal;
         }
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
+    public String getNome() { return nome; }
+    public Double getPrecoOriginal() { return precoOriginal; }
+    public Integer getEstoque() { return estoque; }
+    public Double getPrecoFinal() { return precoFinal; }
 }

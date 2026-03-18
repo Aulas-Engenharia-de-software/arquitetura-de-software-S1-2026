@@ -1,17 +1,19 @@
 package com.fag.lucasmartins.mvc.model.service.impl;
 
-import com.fag.lucasmartins.mvc.controller.mapper.ProdutoDTOMapper;
-import com.fag.lucasmartins.mvc.model.bo.ProdutoBO;
-import com.fag.lucasmartins.mvc.model.service.IProdutoService;
-import com.fag.lucasmartins.mvc.view.dto.ProdutoDTO;
 import org.springframework.stereotype.Service;
 
+import com.fag.lucasmartins.mvc.controller.mapper.ProdutoDTOMapper;
+import com.fag.lucasmartins.mvc.model.bo.ProdutoBO;
+import com.fag.lucasmartins.mvc.model.service.ProdutoService;
+import com.fag.lucasmartins.mvc.view.dto.ProdutoDTO;
+
 @Service
-public class ProdutoServiceImpl implements IProdutoService {
+public class ProdutoServiceImpl implements ProdutoService {
+
     @Override
-    public ProdutoDTO criarProduto(ProdutoDTO dto) {
+    public ProdutoDTO criarProduto(ProdutoDTO dto) throws Exception {
         ProdutoBO bo = ProdutoDTOMapper.toBO(dto);
-        bo.aplicarDescontoAtacado();
+        bo.aplicarRegrasNegocio();
         return ProdutoDTOMapper.toDTO(bo);
     }
 }
